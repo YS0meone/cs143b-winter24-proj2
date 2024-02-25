@@ -16,7 +16,6 @@ int main(int argc, char* argv[]) {
     outputPath = std::string(argv[3]);
     try {
         VMManager vmm(initPath, inputPath, outputPath);
-        vmm.initializePM();
         vmm.translate();
     }
     catch (const std::invalid_argument& e) {

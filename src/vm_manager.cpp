@@ -18,6 +18,7 @@ VMManager::VMManager(const std::string& initFilePath, const std::string& inputFi
     initFile.open(initFilePath.c_str());
     inputFile.open(inputFilePath.c_str());
     outputFile.open(outputFilePath.c_str());
+    initializePM();
 }
 
 VMManager::~VMManager() {
@@ -99,7 +100,7 @@ int VMManager::translateVA(int virtualAddress) {
 void VMManager::translate() {
     int virtualAddress;
     while (inputFile >> virtualAddress){
-        translateVA(virtualAddress);
+        outputFile << translateVA(virtualAddress) << " ";
     }
 }
 
