@@ -1,8 +1,4 @@
-#include <fstream>
-#include <iostream>
 #include "vm_manager.hpp"
-#include <string>
-#include <stdexcept>
 
 
 int main(int argc, char* argv[]) {
@@ -15,8 +11,15 @@ int main(int argc, char* argv[]) {
         std::cerr << "Error: " << e.what() << std::endl;
         return 1;
     }
-    for (unsigned i = 1; i < argc; ++i) {
-        std::cout << argv[i] << std::endl;
+    initPath = std::string(argv[1]);
+    inputPath = std::string(argv[2]);
+    outputPath = std::string(argv[3]);
+    try {
+        VMManager vmm(initPath, inputPath, outputPath);
+    }
+    catch (const std::invalid_argument& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
     }
     return 0;
 }
