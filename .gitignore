@@ -33,3 +33,8 @@
 
 # cmake build directory
 build/
+
+# Clion Environment
+cmake-build-debug/
+.idea/
+
