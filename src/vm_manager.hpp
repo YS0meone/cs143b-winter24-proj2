@@ -30,7 +30,7 @@ public:
 
     ~VMManager();
 
-    void initializePM();
+
 
     void setSegmentTable(int segmentID, int segmentSize, int ptFrame);
 
@@ -50,6 +50,7 @@ private:
     std::ifstream inputFile;
     std::ofstream outputFile;
     int pm[PM_SIZE] = {0};
+    void initializePM();
 };
 
 
