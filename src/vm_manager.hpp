@@ -11,8 +11,11 @@
 #include <sys/stat.h>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>
+#include <list>
+#include <algorithm>
 
-const unsigned PAGE_SIZE = 512;
+const int PAGE_SIZE = 512;
 const unsigned NUM_OF_PAGES = 1024;
 const unsigned PM_SIZE = PAGE_SIZE * NUM_OF_PAGES;
 
@@ -40,6 +43,7 @@ public:
 
     int translateVA(int virtualAddress);
 
+    void readBlock(int blockID, int pmDest);
     // for debug use
     void printST();
 
@@ -49,7 +53,10 @@ private:
     std::ifstream initFile;
     std::ifstream inputFile;
     std::ofstream outputFile;
+
     int pm[PM_SIZE] = {0};
+    int pd[NUM_OF_PAGES][PAGE_SIZE] = {0};
+    std::list<int> freeFrames;
     void initializePM();
 };
 
