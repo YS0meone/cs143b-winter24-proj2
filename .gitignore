@@ -38,3 +38,6 @@ build/
 cmake-build-debug/
 .idea/
 
+# output file
+output.txt
+
