@@ -10,6 +10,11 @@
 #include <stdexcept>
 #include <sys/stat.h>
 #include <fstream>
+#include <sstream>
+
+const unsigned PAGE_SIZE = 512;
+const unsigned NUM_OF_PAGES = 1024;
+const unsigned PM_SIZE = PAGE_SIZE * NUM_OF_PAGES;
 
 class VMManager {
 public:
@@ -27,10 +32,24 @@ public:
 
     void initializePM();
 
+    void setSegmentTable(int segmentID, int segmentSize, int ptFrame);
+
+    void setPageTable(int segmentID, int pageOffset, int frameID);
+
+    void translate();
+
+    int translateVA(int virtualAddress);
+
+    // for debug use
+    void printST();
+
+    void printPT(int segmentID);
+
 private:
     std::ifstream initFile;
     std::ifstream inputFile;
     std::ofstream outputFile;
+    int pm[PM_SIZE] = {0};
 };
 
 
