@@ -5,4 +5,5 @@ project("vmm" VERSION 1.0)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(vmm src/vm_manager.cpp
-        src/main.cpp)
+        src/main.cpp
+        playground/va_translator.cpp)

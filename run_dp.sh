@@ -14,5 +14,4 @@ fi
 cd build || exit
 cmake ..
 cmake --build .
-./vmm "$root/input/init.txt" "$root/input/input.txt" "$root/output/output.txt"
-
+./vmm "$root/input/init-dp.txt" "$root/input/input-dp.txt" "$root/output/output-dp.txt"

@@ -40,4 +40,4 @@ cmake-build-debug/
 
 # output file
 output.txt
-
+output/

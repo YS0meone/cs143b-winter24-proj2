@@ -126,12 +126,20 @@ int VMManager::translateVA(int virtualAddress) {
         readBlock(-ptFrame, pmFreeFrame * PAGE_SIZE);
         pm[2 * s + 1] = pmFreeFrame;
     }
+    else if (ptFrame == 0){
+        // the PT table does not exist
+        return -1;
+    }
     int destFrame = pm[pm[2 * s + 1] * PAGE_SIZE + p];
     if (destFrame < 0) {
         int pmFreeFrame = freeFrames.front();
         freeFrames.pop_front();
         readBlock(-destFrame, pmFreeFrame * PAGE_SIZE);
         pm[pm[2 * s + 1] * PAGE_SIZE + p] = pmFreeFrame;
+    }
+    else if (destFrame == 0) {
+        // the page table entry does not exist
+        return -1;
     }
     int pa = pm[pm[2 * s + 1] * PAGE_SIZE + p] * PAGE_SIZE + w;
     return pa;
